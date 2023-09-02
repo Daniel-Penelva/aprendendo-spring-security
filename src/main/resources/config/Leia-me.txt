@@ -1,0 +1,8 @@
+
+Ao adicionar a dependência do SpringSecurity ao acessar a rota da página /private, automaticamente irá  redirecionar para a página de /login 
+onde irá pedir as credencias de acesso (username e password). 
+
+Vale ressaltar que o Spring Security gera as credencias no console, no caso o username é "user", já o password está sendo exemplificado:  
+Using generated security password: 52ae891f-2a39-4a91-aeff-143e71a72ec9.
+	
+Vale ressaltar também que existe uma rota de logout -> rota: http://localhost:8080/logout
