@@ -6,3 +6,238 @@ Vale ressaltar que o Spring Security gera as credencias no console, no caso o us
 Using generated security password: 52ae891f-2a39-4a91-aeff-143e71a72ec9.
 	
 Vale ressaltar também que existe uma rota de logout -> rota: http://localhost:8080/logout
+
+--------------- // ---------------
+
+É importante destacar que nos deparamos com um problema, sabemos que a rota privada está protegida, contudo a rota pública também vai estar 
+protegida. Mas ela (no caso, a rota /public) deveria estar aberta. Por que isso não acontece? Por que temos rotas com necessidade de proteção
+de acesso diferentes e para fazer essa implementação vai ser preciso criar uma classe de configuração dentro do Spring Security. Vamos garantir 
+que a rota pública não tenha a proteção do Spring Security.
+
+--------------- // ---------------
+
+Anotação @Configuration
+
+A anotação @Configuration é uma anotação importante no ecossistema do Spring Framework em Java. Ela é usada para marcar uma classe como uma 
+classe de configuração, indicando que a classe contém métodos que definem beans e configurações para um aplicativo Spring. Aqui estão os 
+principais pontos a serem considerados sobre a anotação @Configuration:
+
+1. Definição de Beans: Classes anotadas com @Configuration geralmente contêm métodos anotados com @Bean. Esses métodos são usados para definir 
+   instâncias de classes que serão gerenciadas pelo contêiner Spring, ou seja, serão considerados "beans". 
+
+2. Substituição de XML: A anotação @Configuration é frequentemente usada como uma alternativa aos arquivos de configuração XML no Spring. Isso 
+   permite que você configure seu aplicativo Spring de forma programática em vez de usar XML. É especialmente útil quando você deseja aproveitar os recursos do Spring Boot para configurar seu aplicativo.
+
+3. Component Scan: Classes anotadas com @Configuration são automaticamente detectadas durante a varredura de componentes (component scanning) do 
+Spring. Isso significa que o Spring encontrará essas classes e as processará para criar beans e configurações.
+
+4. Módulos e Perfis: Você pode usar @Configuration em várias classes para organizar suas configurações em módulos separados. Além disso, é 
+possível usar perfis (@Profile) para ativar ou desativar configurações com base em ambientes ou requisitos específicos.
+
+5. Injeção de Dependência: Você pode injetar beans definidos em classes @Configuration em outras partes do seu aplicativo usando injeção de 
+dependência.
+
+6. Observação Importante: Classes anotadas com @Configuration são gerenciadas pelo Spring e seus métodos são chamados apenas uma vez durante a 
+inicialização do aplicativo. Os objetos criados por esses métodos são singleton por padrão no contexto do aplicativo Spring.
+
+Em resumo, @Configuration é uma anotação fundamental para configurar e personalizar aplicativos Spring e Spring Boot. Ela permite que você 
+defina beans, organize configurações e substitua a configuração XML tradicional de uma maneira programática e baseada em anotações.
+
+--------------- // ---------------
+
+Anotação @EnableWebSecurity
+
+A anotação `@EnableWebSecurity` é uma anotação importante no contexto do Spring Security, que é uma estrutura poderosa para a segurança de 
+aplicativos web em Java. Ela é usada para habilitar a configuração de segurança baseada em Java para um aplicativo Spring.
+
+Aqui estão os principais pontos a serem considerados sobre a anotação `@EnableWebSecurity`:
+
+1. **Habilitação do Spring Security:** Ao adicionar `@EnableWebSecurity` a uma classe de configuração, você está informando ao Spring que deseja 
+   habilitar o módulo de segurança para o seu aplicativo.
+
+2. **Extensibilidade:** O Spring Security é altamente configurável e personalizável. Através da anotação `@EnableWebSecurity`, você pode criar 
+   uma classe de configuração personalizada que estende `WebSecurityConfigurerAdapter` e, em seguida, configurar aspectos específicos da 
+   segurança da sua aplicação.
+
+3. **Personalização:** Com a classe de configuração personalizada, você pode definir políticas de segurança específicas, como quem pode acessar 
+   quais recursos, como a autenticação deve funcionar, como as senhas devem ser codificadas e muito mais.
+
+4. **Controle de Acesso:** O Spring Security oferece controle granular sobre o acesso a URLs específicas, recursos e métodos HTTP. Você pode 
+   definir regras de autorização com base em funções de usuário, autenticação e muito mais.
+
+5. **Autenticação:** Além de autorização, o Spring Security lida com a autenticação de usuários. Você pode configurar a autenticação usando 
+   várias fontes, como bancos de dados, LDAP, autenticação baseada em token, entre outras.
+
+6. **Proteção contra Ataques:** O Spring Security inclui mecanismos de proteção contra várias formas de ataques, como CSRF (Cross-Site Request 
+   Forgery), XSS (Cross-Site Scripting) e outros.
+
+7. **Configuração de Sessão:** Você pode configurar como as sessões de usuário são gerenciadas, incluindo o uso de sessões HTTP, tokens de 
+   autenticação, entre outros.
+
+8. **Suporte a OAuth e JWT:** O Spring Security oferece suporte integrado para autenticação com OAuth 2.0 e JWT (JSON Web Tokens).
+
+Em resumo, a anotação `@EnableWebSecurity` é o ponto de partida para configurar a segurança em aplicativos Spring. Ela permite que você crie 
+políticas de segurança personalizadas, controle o acesso a recursos protegidos e gerencie a autenticação dos usuários. O Spring Security é uma 
+ferramenta poderosa para garantir que seu aplicativo web seja seguro e protegido contra várias ameaças de segurança.
+
+--------------- // ---------------
+
+Anotação @Bean
+A anotação `@Bean` é uma anotação do Spring Framework que é usada para indicar que um método em uma classe Java será usado para produzir 
+(ou definir) um bean gerenciado pelo contêiner Spring. Essa anotação é amplamente utilizada na configuração de aplicativos Spring para definir 
+instâncias de objetos que serão gerenciadas pelo Spring IoC (Inversion of Control) Container.
+
+Aqui estão os principais pontos a serem considerados sobre a anotação `@Bean`:
+
+1. **Definição de Beans:** A anotação `@Bean` é usada em métodos de classes anotadas com `@Configuration` ou em métodos de componentes Spring 
+   gerenciados, como serviços (`@Service`), controladores (`@Controller`) ou repositórios (`@Repository`). Esses métodos são usados para definir 
+   beans que serão gerenciados pelo Spring. Exemplificando:
+
+   ```java
+   @Configuration
+   public class MyAppConfig {
+       
+       @Bean
+       public MyService myService() {
+           return new MyServiceImpl();
+       }
+   }
+   ```
+
+   Neste exemplo, o método `myService()` define um bean chamado `myService`, que é uma instância de `MyServiceImpl`.
+
+2. **Injeção de Dependência:** Os beans definidos com `@Bean` podem ser injetados em outras partes do aplicativo Spring usando injeção de 
+   dependência. Isso permite que você utilize facilmente esses beans em diferentes componentes do aplicativo.
+
+   ```java
+   @Service
+   public class MyServiceClient {
+       
+       private final MyService myService;
+       
+       @Autowired
+       public MyServiceClient(MyService myService) {
+           this.myService = myService;
+       }
+       
+       // ...
+   }
+   ```
+
+3. **Personalização:** Você pode configurar e personalizar beans no método `@Bean` conforme necessário. Isso inclui a configuração de 
+   propriedades, definição de comportamento e outras configurações específicas do bean.
+
+4. **Escopo de Beans:** Por padrão, os beans definidos com `@Bean` são singleton no contexto do aplicativo Spring. No entanto, você pode 
+   configurar beans com diferentes escopos, como `prototype`, `request`, `session`, etc., usando outras anotações, como `@Scope`.
+
+5. **Recursos Externos:** A anotação `@Bean` também pode ser usada para criar instâncias de classes que representam recursos externos, como 
+   bancos de dados, filas de mensagens, clientes REST, entre outros. Isso permite que você gerencie a criação e configuração desses recursos de maneira centralizada.
+
+6. **Programação Orientada a Aspectos (AOP):** Os beans definidos com `@Bean` também podem ser alvo de aspectos AOP. Isso significa que você 
+   pode aplicar aspectos de programação orientada a aspectos a métodos de bean para adicionar funcionalidades como log, segurança, transações, etc.
+
+Em resumo, a anotação `@Bean` é fundamental no Spring Framework para definir beans gerenciados pelo contêiner Spring. Ela permite que você crie 
+instâncias de classes que serão usadas em seu aplicativo e fornece controle sobre a criação, configuração e escopo desses beans. Essa 
+flexibilidade é uma das razões pelas quais o Spring é tão popular para desenvolvimento de aplicativos Java empresariais.
+
+--------------- // ---------------
+
+Classe SecurityFilterChain
+
+A classe `SecurityFilterChain` é uma parte importante do Spring Security, que é uma estrutura de segurança robusta para aplicativos Java. A 
+`SecurityFilterChain` é usada para definir as configurações de filtro de segurança que serão aplicadas a solicitações HTTP específicas em seu 
+aplicativo.
+
+Aqui estão os principais pontos a serem considerados sobre a classe `SecurityFilterChain`:
+
+1. **Configuração de Filtros:** A principal função da `SecurityFilterChain` é configurar filtros de segurança para processar solicitações HTTP.
+   Os filtros são componentes que podem executar ações específicas, como autenticar usuários, autorizar acessos, proteger contra ataques, entre 
+   outros.
+
+2. **Prioridade de Filtros:** A `SecurityFilterChain` permite definir a ordem e a prioridade dos filtros de segurança. Isso é crucial porque a 
+   ordem dos filtros pode afetar como as solicitações são processadas e quais filtros são aplicados a quais URLs.
+
+3. **Configuração por URL:** Você pode criar várias instâncias de `SecurityFilterChain`, cada uma configurada para atender a URLs específicas 
+   ou padrões de URL. Isso permite que você defina diferentes configurações de segurança para diferentes partes de seu aplicativo. Exemplificando:
+
+   ```java
+   @Bean
+   public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+       http
+           .authorizeRequests(authorizeRequests ->
+               authorizeRequests
+                   .antMatchers("/public/**").permitAll()
+                   .anyRequest().authenticated()
+           )
+           .formLogin(withDefaults());
+       return http.build();
+   }
+   ```
+
+   Neste exemplo, estamos definindo uma `SecurityFilterChain` para URLs públicas que não exigem autenticação e uma configuração padrão para 
+   todas as outras URLs.
+
+4. **Customização Avançada:** Você pode personalizar os filtros de segurança de acordo com as necessidades específicas de seu aplicativo. Isso 
+   inclui adicionar ou remover filtros, definir configurações de autenticação, definir regras de autorização, configurar autenticação baseada 
+   em token, OAuth e muito mais.
+
+5. **Suporte a Diversos Mecanismos de Autenticação:** O Spring Security oferece suporte a uma variedade de mecanismos de autenticação, como 
+   autenticação por usuário/senha, autenticação baseada em token (como JWT), autenticação OAuth, autenticação LDAP, SAML e outros. A 
+   `SecurityFilterChain` permite que você configure esses mecanismos de autenticação com facilidade.
+
+6. **Segurança em Múltiplos Níveis:** Você pode criar várias `SecurityFilterChain` para diferentes níveis de segurança em seu aplicativo. Isso 
+   é útil quando você deseja aplicar políticas de segurança diferentes para diferentes partes do aplicativo.
+
+7. **Integração com Spring Boot:** O Spring Security é frequentemente usado em conjunto com o Spring Boot, o que simplifica ainda mais a 
+   configuração de segurança em aplicativos Spring. O Spring Boot fornece configurações padrão sensíveis para a segurança, o que pode ser 
+   personalizado com a `SecurityFilterChain` conforme necessário.
+
+A classe `SecurityFilterChain` é uma parte fundamental para configurar a segurança em aplicativos Spring com o Spring Security. Ela fornece 
+flexibilidade e controle para proteger seu aplicativo contra ameaças de segurança, definindo como as solicitações HTTP são tratadas em termos 
+de autenticação e autorização.
+
+--------------- // ---------------
+
+Configurando acesso diferenciado dependendo da rota (/private ou  /public) do serviço web.
+
+Analisando cada parte do script:
+
+@Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        return http
+        .authorizeHttpRequests(authorizeConfig -> {
+        
+            authorizeConfig.antMatchers("/public").permitAll();
+            authorizeConfig.antMatchers("/logout").permitAll();
+            authorizeConfig.anyRequest().authenticated();
+
+        }).formLogin(Customizer.withDefaults()).build();
+    }
+
+1. **@Bean:** Esta anotação é usada para definir um bean no contexto do Spring. Neste caso, está configurando uma `SecurityFilterChain` 
+   como um bean gerenciado pelo Spring.
+
+2. **SecurityFilterChain:** Esta é a classe que representa a cadeia de filtros de segurança. A cadeia de filtros de segurança é usada para 
+   processar solicitações HTTP, aplicando as regras de segurança definidas.
+
+3. **HttpSecurity http:** O parâmetro `HttpSecurity` é injetado no método pelo Spring. Ele fornece uma API para configurar a segurança do 
+   aplicativo.
+
+4. **authorizeHttpRequests:** Este método permite que definir as regras de autorização para as solicitações HTTP. No exemplo, estamos usando 
+   a expressão lambda `authorizeConfig` para configurar as regras.
+
+5. **authorizeConfig.antMatchers:** A expressão `antMatchers` permite definir padrões de URL para os quais as regras de autorização serão 
+   aplicadas. No exemplo, estamos permitindo acesso não autenticado às URLs "/public" e "/logout".
+
+6. **authorizeConfig.anyRequest().authenticated():** Esta linha configura que todas as outras solicitações (ou seja, aquelas que não 
+   correspondem aos padrões "/public" e "/logout") requerem autenticação. Isso significa que o acesso a essas URLs só será permitido para 
+   usuários autenticados.
+
+7. **formLogin(Customizer.withDefaults()).build():** Aqui, estamos configurando um formulário de login padrão. O método 
+   `Customizer.withDefaults()` aplica configurações padrão para o formulário de login, como a página de login, parâmetros de login e 
+   redirecionamento após o login. O método `build()` finaliza a configuração da `SecurityFilterChain`.
+
+Em resumo, esse script configura uma `SecurityFilterChain` que define as regras de autorização para diferentes URLs em seu aplicativo. Ele 
+permite o acesso não autenticado a URLs públicas ("/public" e "/logout") e exige autenticação para todas as outras solicitações. Além disso, 
+ele configura um formulário de login padrão para lidar com o processo de autenticação. Essa é uma configuração básica de segurança, e você pode 
+personalizá-la de acordo com as necessidades específicas do seu aplicativo.
