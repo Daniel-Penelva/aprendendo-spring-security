@@ -333,3 +333,22 @@ Depois vamos criar a credencial, para isso vamos em "Criar Credencial" > ID do C
 Depois vai em: URIS de redirecionamento autorizados (Domínio do app)  > ADICIONAR URI (seria o nosso endpoint de callback) > http://localhost:8080/login/oauth2/code/google
 
 Vai ser gerado dois id um do client e outro secret - essas chaves serão coladas "clientId:" e "clientSecret:" no appication.yaml.
+
+--------------- // ---------------
+
+Questionamento: Como saber quem está autenticado? Como se obtêm as informações dessa autenticação? É nesse caso que  entra o OpenID. Podemos dizer 
+que o google fala OpenID, logo ele retorna para nós um id token (que é um token de identidade), logo ele retorna tanto um token de acesso para
+fazer as requisições autorizadas, quanto um token de identidade.
+
+Vamos então mostrar como obter os dados do usuário autenticado através da anotação @AuthenticationPrincipal.
+
+A anotação @AuthenticationPrincipal é uma anotação do Spring Security que permite injetar o principal de autenticação atual em um controlador, 
+serviço ou qualquer componente gerenciado pelo Spring. Ela é frequentemente usada para acessar os detalhes do usuário autenticado em um 
+controlador Spring.
+
+No contexto do OAuth2 e OpenID Connect (OIDC), a referência a OidcUser, essa anotação permite acessar informações sobre o usuário autenticado 
+pelo provedor de identidade. O OidcUser é uma representação dos detalhes do usuário obtidos após uma autenticação bem-sucedida com o provedor 
+de identidade usando o protocolo OIDC.
+
+
+
