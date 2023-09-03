@@ -241,3 +241,95 @@ Em resumo, esse script configura uma `SecurityFilterChain` que define as regras 
 permite o acesso não autenticado a URLs públicas ("/public" e "/logout") e exige autenticação para todas as outras solicitações. Além disso, 
 ele configura um formulário de login padrão para lidar com o processo de autenticação. Essa é uma configuração básica de segurança, e você pode 
 personalizá-la de acordo com as necessidades específicas do seu aplicativo.
+
+--------------- // ---------------
+
+OAuth (Open Authorization)
+
+OAuth (Open Authorization) é um protocolo de autorização amplamente utilizado para permitir que aplicativos acessem recursos protegidos em nome 
+de um usuário, sem exigir que o usuário compartilhe suas credenciais (como senha) diretamente com o aplicativo. Ele fornece uma maneira segura 
+de delegar autorizações e é amplamente utilizado em aplicativos web e móveis para habilitar login único (Single Sign-On) e acesso controlado a 
+APIs de terceiros.
+
+Aqui estão os conceitos-chave do OAuth:
+
+1. **Autorização de Terceiros:** No OAuth, um usuário concede permissão a um aplicativo de terceiros (o aplicativo cliente) para acessar seus 
+   recursos protegidos em um serviço (o servidor de recursos) em seu nome. Isso é feito sem compartilhar as credenciais do usuário diretamente 
+   com o aplicativo cliente.
+
+2. **Recursos Protegidos:** Os recursos protegidos podem ser dados do usuário, como informações de perfil, fotos, documentos, ou serviços da 
+   web, como APIs RESTful. O OAuth é usado para proteger esses recursos, garantindo que apenas aplicativos autorizados tenham acesso a eles.
+
+3. **Fluxo de Autorização:** O OAuth define vários fluxos de autorização que descrevem como um aplicativo cliente obtém tokens de acesso para 
+   acessar recursos protegidos. Os fluxos mais comuns incluem o Fluxo de Autorização de Código, o Fluxo de Senha, o Fluxo Implícito e o Fluxo de Credenciais do Cliente.
+
+4. **Tokens de Acesso:** Os tokens de acesso são emitidos pelo servidor de autorização após o usuário conceder permissão ao aplicativo cliente. 
+   Existem dois tipos principais de tokens de acesso: o "Bearer Token" (token de portador), que é usado para autenticar as solicitações do 
+   cliente ao servidor de recursos, e o "Refresh Token" (token de atualização), que pode ser usado para obter um novo token de acesso sem a 
+   necessidade de reautenticação do usuário.
+
+5. **Escopo:** O OAuth permite definir escopos que especificam o nível de acesso concedido a um aplicativo cliente. Um escopo pode representar 
+   permissões específicas, como leitura de e-mails ou publicação de postagens em mídias sociais.
+
+6. **Provedor de Identidade:** Em muitos casos, um provedor de identidade é usado para autenticar o usuário e gerar tokens de acesso. Exemplos 
+   populares de provedores de identidade incluem Google, Facebook e GitHub.
+
+7. **OAuth 2.0:** É a versão mais recente do protocolo OAuth e é amplamente adotada. Ela inclui melhorias de segurança e flexibilidade em 
+   comparação com a versão anterior, OAuth 1.0.
+
+8. **Aplicativos de Terceiros:** Aplicativos de terceiros são aqueles desenvolvidos por organizações ou desenvolvedores independentes que 
+   desejam acessar recursos protegidos em serviços de terceiros. O OAuth permite que esses aplicativos solicitem permissão aos usuários e 
+   acessem esses recursos de forma segura.
+
+9. **Ator Principal:** No contexto do OAuth2, o "ator principal" é o usuário final que deseja autorizar um aplicativo de terceiros a acessar 
+   seus recursos protegidos. O usuário é responsável por conceder ou negar a permissão ao aplicativo.
+
+10. **Cliente:** O "cliente" é o aplicativo de terceiros que deseja acessar os recursos protegidos em nome do usuário. O cliente pode ser uma 
+    aplicação web, um aplicativo móvel, um serviço ou qualquer outra entidade que precise de acesso aos recursos.
+
+11. **Servidor de Autorização:** O "servidor de autorização" é responsável por autenticar o usuário e conceder tokens de acesso ao cliente após 
+    a autorização bem-sucedida. Este servidor é frequentemente fornecido pelo provedor de identidade ou serviço que hospeda os recursos protegidos.
+
+12. **Servidor de Recursos:** O "servidor de recursos" é onde os recursos protegidos estão armazenados. Este servidor valida os tokens de acesso 
+    e fornece os recursos ao cliente, se a autorização for válida.
+
+13. **Token de Acesso:** O token de acesso é uma credencial que o cliente usa para acessar os recursos protegidos no servidor de recursos. 
+   Existem dois tipos principais de tokens de acesso no OAuth2: o "Bearer Token" (token de portador), que é transmitido com a solicitação HTTP, 
+   e o "Refresh Token" (token de atualização), que pode ser usado para obter novos tokens de acesso.
+
+14. **Fluxos de Autorização:** O OAuth2 define vários fluxos de autorização, que descrevem como um cliente obtém um token de acesso. Alguns dos 
+    fluxos mais comuns incluem o Fluxo de Autorização de Código, o Fluxo Implícito, o Fluxo de Senha e o Fluxo de Credenciais do Cliente. Cada 
+    fluxo é projetado para cenários específicos.
+
+15. **Escopo:** O escopo é usado para especificar o nível de acesso que o cliente está solicitando. Um escopo pode representar permissões 
+    específicas, como "leitura de e-mails" ou "publicação de tweets". O servidor de autorização decide se concede ou nega o acesso com base nos 
+    escopos solicitados.
+
+16. **Expiração de Token:** Tokens de acesso geralmente têm um período de validade limitado para aumentar a segurança. Quando um token expira, 
+     o cliente pode usar um token de atualização (refresh token) para obter um novo token de acesso sem a necessidade de reautenticação do usuário.
+
+17. **Segurança:** OAuth2 incorpora várias camadas de segurança para proteger as comunicações e os tokens de acesso, incluindo HTTPS e a 
+    necessidade de manter segredos do cliente em segredo.
+
+OAuth2 é amplamente usado em cenários de autenticação única (SSO), integração com serviços de terceiros, acesso a APIs de mídias sociais, 
+autenticação federada e muito mais. Ele oferece uma maneira segura e padronizada de lidar com autorização e autenticação em aplicativos modernos.
+
+O OAuth é um componente essencial da segurança na internet, pois permite que os usuários controlem o acesso aos seus dados e recursos, ao mesmo 
+tempo em que facilita a integração de aplicativos e serviços. Ele é amplamente utilizado em autenticação única (SSO), autorização de APIs e 
+integração com plataformas de terceiros em uma variedade de cenários, incluindo mídias sociais, serviços de armazenamento em nuvem e muito mais.
+
+
+--------------- // ---------------
+Vamos utilizar o serviço da google para criar as credenciais (Tem que ter uma conta no gmail) - vamos acessar o site:
+https://console.cloud.google.com
+
+Ao acessar o site - Vamos na aba do menu "APIS e Serviços" > Credenciais.
+
+Primeiro vamos criar o projeto, a princípio cria o nome do projeto.
+Configurar tela de consentimento - criar para usuário externo.
+
+Depois vamos criar a credencial, para isso vamos em "Criar Credencial" > ID do Client OAuth > Aplicativo da Web > Informe o nome (spring-security) >
+
+Depois vai em: URIS de redirecionamento autorizados (Domínio do app)  > ADICIONAR URI (seria o nosso endpoint de callback) > http://localhost:8080/login/oauth2/code/google
+
+Vai ser gerado dois id um do client e outro secret - essas chaves serão coladas "clientId:" e "clientSecret:" no appication.yaml.

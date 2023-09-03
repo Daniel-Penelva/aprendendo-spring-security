@@ -28,4 +28,6 @@ class HttpController{
 	String privateRoute(){
 		return "<h1> Via privado, apenas pessoas autorizadas! </h1>";
 	}
+
+	// Para acessar a página de login fornecido pelo Spring Security - http://localhost:8080/login
 }
