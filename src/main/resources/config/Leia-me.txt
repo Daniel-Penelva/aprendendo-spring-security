@@ -350,5 +350,7 @@ No contexto do OAuth2 e OpenID Connect (OIDC), a referência a OidcUser, essa an
 pelo provedor de identidade. O OidcUser é uma representação dos detalhes do usuário obtidos após uma autenticação bem-sucedida com o provedor 
 de identidade usando o protocolo OIDC.
 
+--------------- // ---------------
 
+Utilizando o JWT no cabeçalho da requisição para autenticar as requisições das nossas rotas do serviço.
 

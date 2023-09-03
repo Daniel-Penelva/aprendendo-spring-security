@@ -25,16 +25,17 @@ class HttpController{
 		return "<h1> Via pública, fique à vontade para dar uma olhada! </h1>";
 	}
 
-	// http://localhost:8080/private
-	@GetMapping("/private")
-	String privateRoute(@AuthenticationPrincipal OidcUser principal){
+	// http://localhost:8080/cookie - Este exemplo utiliza cookie para manter a sessão do usuário
+	@GetMapping("/cookie")
+	String cookieRoute(@AuthenticationPrincipal OidcUser cookie){
 		
 		return "<h1> Via privado, apenas pessoas autorizadas! </h1>\n" +
-       "<h3> Principal: " + principal + "</h3>\n" +
-       "<h3> E-mail attribute: " + principal.getAttribute("email") + "</h3>\n" +
-       "<h3> Authorities: " + principal.getAuthorities() + "</h3>\n" +
-       "<h3> JWT: " + principal.getIdToken().getTokenValue() + "</h3>\n";
+       "<h3> Principal: " + cookie + "</h3>\n" +
+       "<h3> E-mail attribute: " + cookie.getAttribute("email") + "</h3>\n" +
+       "<h3> Authorities: " + cookie.getAuthorities() + "</h3>\n" +
+       "<h3> JWT: " + cookie.getIdToken().getTokenValue() + "</h3>\n";
 	}
+
 
 	// Para acessar a página de login fornecido pelo Spring Security - http://localhost:8080/login
 }

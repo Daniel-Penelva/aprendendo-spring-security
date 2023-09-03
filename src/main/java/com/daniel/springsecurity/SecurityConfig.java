@@ -31,7 +31,7 @@ public class SecurityConfig{
 
                 }).oauth2Login(oauth2LoginConfig -> {
                     oauth2LoginConfig
-                            .defaultSuccessUrl("/private"); // Redireciona para /private após o login            
+                            .defaultSuccessUrl("/cookie"); // Redireciona para /private após o login            
                 }).build();
     }
 }
