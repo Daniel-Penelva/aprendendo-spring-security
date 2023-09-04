@@ -352,5 +352,10 @@ de identidade usando o protocolo OIDC.
 
 --------------- // ---------------
 
-Utilizando o JWT no cabeçalho da requisição para autenticar as requisições das nossas rotas do serviço.
-
+Utilizando o JWT no cabeçalho da requisição para autenticar as requisições das nossas rotas do serviço. Para poder fazer que a nossa aplicação 
+check esse header da autorização que está chegando vai ser preciso transfomar o nosso cliente OAuth no Resource Server do OAuth. No caso, o 
+Resource Server sabe dizer que o token é válido ou não, logo vamos ter que adicionar esse papel do Resource Server. Vamos adicionar uma nova 
+dependência "OAuth Resource Server", onde essa funcionalidade fará com que ele faça a verificaçao do token (dentro do cabeçalho) recebido e 
+para fazer essa verificação ele tem que conhecer o emissor desse token, logo vamos adicionar uma propriedade "resourceserver" no application.yaml.
+Na url "https://accounts.google.com"  que existe a chave que foi utilizada para assinar esse token, é essa chave que consegue identificar se o 
+token é válido ou não. 

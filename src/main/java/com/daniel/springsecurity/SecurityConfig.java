@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -31,7 +32,9 @@ public class SecurityConfig{
 
                 }).oauth2Login(oauth2LoginConfig -> {
                     oauth2LoginConfig
-                            .defaultSuccessUrl("/cookie"); // Redireciona para /private após o login            
-                }).build();
+                            .defaultSuccessUrl("/cookie"); // Redireciona para /private após o login   
+                                    
+                }).oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt) // Para esperar token nesse formato
+                .build();
     }
 }

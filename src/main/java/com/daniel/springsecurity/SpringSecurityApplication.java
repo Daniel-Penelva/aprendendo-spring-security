@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +37,15 @@ class HttpController{
        "<h3> JWT: " + cookie.getIdToken().getTokenValue() + "</h3>\n";
 	}
 
+	// http://localhost:8080/jwt - Este exemplo utiliza jwt para manter a sessão do usuário
+	@GetMapping("/jwt")
+	String jwtRoute(@AuthenticationPrincipal Jwt jwt) {
+
+		return "<h1> Via privado, apenas pessoas autorizadas! </h1>\n" +
+       "<h3> Principal: " + jwt.getClaims() + "</h3>\n" +
+       "<h3> E-mail attribute: " + jwt.getClaim("mail") + "</h3>\n" +
+       "<h3> JWT: " + jwt.getTokenValue() + "</h3>\n";
+	}
 
 	// Para acessar a página de login fornecido pelo Spring Security - http://localhost:8080/login
 }

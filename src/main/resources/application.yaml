@@ -6,3 +6,6 @@ spring:
           google:
             clientId: 667205212188-hd40jotemkm16i5b4cqnqf2gha36ulo0.apps.googleusercontent.com
             clientSecret: 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
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
